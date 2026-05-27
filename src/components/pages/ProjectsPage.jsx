@@ -77,10 +77,13 @@ export function ProjectsPage() {
 
   useEffect(() => { fetch(page); }, [page, filterType, filterStatus]); // eslint-disable-line
 
-  const save = async (fd) => {
+  const save = async (fd) => {console.log('test');
     try {
       if (editing) { await projectsApi.update(editing.id, fd); toast.success('Updated'); }
-      else { await projectsApi.create(fd); toast.success('Created'); }
+      else { await projectsApi.create(fd); toast.success('Created');
+        
+        
+       }
       setModalOpen(false); setEditing(null); fetch(page);
     } catch (e) { toast.error(e); }
   };
