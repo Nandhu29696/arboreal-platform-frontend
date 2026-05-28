@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { Btn, FormRow, Field, SelectField } from '../ui';
 import {
@@ -74,7 +74,11 @@ export function EmployeeForm({ defaultValues, onSubmit, onCancel }) {
 
 // ── VENDOR FORM ───────────────────────────────────────────────
 export function VendorForm({ defaultValues, onSubmit, onCancel }) {
-  const { register, handleSubmit } = useForm({ defaultValues });
+  const { register, handleSubmit, reset } = useForm({ defaultValues });
+  // IMPORTANT FOR EDIT
+  useEffect(() => {
+    reset(defaultValues || {});
+  }, [defaultValues, reset]);
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <FormRow>
@@ -363,7 +367,12 @@ export function NurseryVendorForm({ defaultValues, onSubmit, onCancel }) {
 
 // ── TREE SPECIES FLOWER FORM ──────────────────────────────────
 export function FlowerForm({ defaultValues, onSubmit, onCancel }) {
-  const { register, handleSubmit } = useForm({ defaultValues });
+  const { register, handleSubmit, reset } = useForm({ defaultValues });
+
+  useEffect(() => {
+    reset(defaultValues || {});
+  }, [defaultValues, reset]);
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <FormRow>
